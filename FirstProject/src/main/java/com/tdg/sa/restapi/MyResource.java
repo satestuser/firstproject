@@ -30,4 +30,6 @@ public class MyResource {
     public String getIt1() {
         return "Got it!";
     }
+    
+    //am adding new comment
 }

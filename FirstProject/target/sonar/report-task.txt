@@ -1,0 +1,5 @@
+projectKey=com.tdg.sa:FirstProject
+serverUrl=http://localhost:9080
+dashboardUrl=http://localhost:9080/dashboard/index/com.tdg.sa:FirstProject
+ceTaskId=AVpA9kI6aj0TyIh3UKrL
+ceTaskUrl=http://localhost:9080/api/ce/task?id=AVpA9kI6aj0TyIh3UKrL

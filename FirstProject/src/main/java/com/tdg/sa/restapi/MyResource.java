@@ -28,7 +28,7 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/new")
     public String getIt1() {
-        return "Got it!";
+        return "Got it! Am available at new site";
     }
     
     //am adding new comment

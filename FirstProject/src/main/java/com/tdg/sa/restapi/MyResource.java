@@ -20,7 +20,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Got it! Acknowledging back.";
+    	return "Got it! Acknowledging back.";
     }
     
     

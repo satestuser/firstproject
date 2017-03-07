@@ -20,7 +20,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-    	return "Testing on 03/07/2017 at 6.43 pm IST";
+    	return "Testing on 03/07/2017 at 8.42 pm IST";
     }
     
     

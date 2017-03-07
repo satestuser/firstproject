@@ -1,0 +1,31 @@
+node {
+
+stage "CHECKOUT(GIT)"
+
+    git url: "https://satestuser:tempid123@github.com/satestuser/firstproject.git"
+
+stage "BUILD(MAVEN)"
+
+   bat "mvn -f FirstProject/pom.xml clean install"
+   
+stage "CODE COVERAGE(SONAR"
+
+   bat "mvn -f FirstProject/pom.xml install sonar:sonar -Dsonar.host.url=http://localhost:9080"
+
+stage "DOCKER IMAGE RECREATION"
+
+    bat "docker build -t 192.168.99.1:8781/saapplicationtest:$BUILD_NUMBER ."
+  
+stage "DOCKER IMAGE PUSH"
+
+    //bat "docker tag 192.168.99.1:8781/saapplicationtest 192.168.99.1:8781/saapplicationtest:$BUILD_NUMBER"
+    bat "docker push 192.168.99.1:8781/saapplicationtest:$BUILD_NUMBER"
+    //bat "docker rmi 192.168.99.1:8781/saapplicationtest:$BUILD_NUMBER"
+
+stage "DOCKER IMAGE REDEPLOY"
+   //bat "docker stop SAapp"
+   //bat "docker rm SAapp"
+   bat "@FOR /f \"tokens=2\" %%i IN ('docker ps -a --filter=\"name=SAapp\"') DO IF NOT %%i==ID docker stop SAapp & docker rm SAapp & docker rmi %%i"
+   bat "docker run -p 8000:8080 -it -d -v tomcatlog:/usr/local/tomcat/logs --name SAapp 192.168.99.1:8781/saapplicationtest:$BUILD_NUMBER"
+
+}
